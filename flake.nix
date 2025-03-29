@@ -13,7 +13,7 @@
       with pkgs; {
         chicago95 = callPackage ./packages/chicago95.nix {};
         cursed_font = callPackage ./packages/cursed_font.nix {};
-        laigter = callPackage ./packages/laigter.nix {};
+        laigter = qt6.callPackage ./packages/laigter.nix {};
         middle-mann-fonts = callPackage ./packages/middle-mann-fonts.nix {};
         uzura = callPackage ./packages/uzura.nix {};
       };
