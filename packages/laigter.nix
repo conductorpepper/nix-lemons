@@ -2,7 +2,6 @@
   stdenv,
   fetchFromGitHub,
   qt6,
-  qtwayland,
   gnumake,
   lib,
 }:
@@ -17,7 +16,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     qt6.qtbase
-    qtwayland
+    qt6.qtwayland
   ];
 
   src = fetchFromGitHub {

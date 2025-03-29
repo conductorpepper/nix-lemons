@@ -1,6 +1,6 @@
 # nix-lemons
 
-nix packages of dubious quality meant for x86_64-linux
+nix packages of **dubious** quality meant for x86_64-linux
 (that could work for other systems)
 
 | name              | description                                 |
