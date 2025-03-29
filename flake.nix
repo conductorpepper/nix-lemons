@@ -9,7 +9,7 @@
   in {
     devShells.x86_64-linux.default = let
       pkgs = pkgsOf "x86_64-linux";
-    in {
+    in pkgs.mkShell {
       packages = with pkgs; [
         nil
         alejandra
