@@ -29,7 +29,7 @@ in your `flake.nix`, add this flake into the inputs.
 afterward, you can add some packages to `environment.systemPackages` or `home.packages`
 
 ```nix
-{inputs, ...}: {
+{pkgs, inputs, ...}: {
     environment.systemPackages = [
         inputs.nix-lemons.packages.${pkgs.stdenv.hostPlatform.system}.<name>
     ];
