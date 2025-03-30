@@ -11,6 +11,7 @@
   xorg,
   libGL,
   openal,
+  extraArguments ? [],
 }:
 stdenv.mkDerivation rec {
   pname = "betacraft-launcher-bin";
@@ -43,7 +44,7 @@ stdenv.mkDerivation rec {
 
     mkdir -p $out/bin
     echo "#!${bash}/bin/bash" > $out/bin/betacraft-launcher
-    echo "${jdk8}/bin/java -jar $src" >> $out/bin/betacraft-launcher
+    echo "${jdk8}/bin/java ${builtins.concatStringsSep " " extraArguments} -jar $src" >> $out/bin/betacraft-launcher
     chmod +x $out/bin/betacraft-launcher
 
     runHook postInstall
