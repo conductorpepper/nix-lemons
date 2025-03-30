@@ -11,6 +11,7 @@
       pkgs = pkgsOf "x86_64-linux";
     in
       with pkgs; {
+        betacraft-launcher-bin = callPackage ./packages/betacraft-launcher-bin.nix {};
         chicago95 = callPackage ./packages/chicago95.nix {};
         cursed_font = callPackage ./packages/cursed_font.nix {};
         laigter = qt6.callPackage ./packages/laigter.nix {};
