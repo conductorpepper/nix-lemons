@@ -6,10 +6,14 @@
       inherit system;
       config.allowUnfree = true;
     });
+
+    forAllSystems = func:
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+      ] (system: func (pkgsOf system));
   in {
-    packages.x86_64-linux = let
-      pkgs = pkgsOf "x86_64-linux";
-    in
+    packages = forAllSystems (pkgs:
       with pkgs; {
         betacraft-launcher-bin = callPackage ./packages/betacraft-launcher-bin.nix {};
         chicago95 = callPackage ./packages/chicago95.nix {};
@@ -17,17 +21,16 @@
         laigter = qt6.callPackage ./packages/laigter.nix {};
         middle-mann-fonts = callPackage ./packages/middle-mann-fonts.nix {};
         uzura = callPackage ./packages/uzura.nix {};
-      };
+      });
 
-    devShells.x86_64-linux.default = let
-      pkgs = pkgsOf "x86_64-linux";
-    in
-      pkgs.mkShell {
+    devShells = forAllSystems (pkgs: {
+      default = pkgs.mkShell {
         packages = with pkgs; [
           nil
           alejandra
         ];
       };
+    });
   };
 
   inputs = {
