@@ -63,5 +63,6 @@ stdenv.mkDerivation rec {
     homepage = "https://betacraft.uk/";
     description = "A launcher for Minecraft focused on legacy versions of the game";
     licenses = lib.licenses.gpl3;
+    mainProgram = "betacraft-launcher";
   };
 }

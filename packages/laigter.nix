@@ -58,6 +58,6 @@ stdenv.mkDerivation rec {
     description = "Laigter: automatic normal map generator for sprites!";
     homepage = "https://github.com/azagaya/laigter/";
     license = lib.licenses.gpl3;
-    maintainers = [];
+    mainProgram = "laigter";
   };
 }
