@@ -28,11 +28,18 @@ stdenv.mkDerivation rec {
 
   # ...egregious
   # https://github.com/NixOS/nixpkgs/issues/214765
-  installPhase = ''
-    runHook preInstall
+  patchPhase = ''
+    runHook prePatch
 
     substituteInPlace ./laigter.pro \
       --replace "qtPrepareTool(LRELEASE, lrelease)" "qtPrepareTool(LRELEASE, lrelease, , , ${lib.getDev qt6.qttools}/bin)"
+
+    runHook postPatch
+  '';
+
+  installPhase = ''
+    runHook preInstall
+
     qmake
     make -j 12
 
