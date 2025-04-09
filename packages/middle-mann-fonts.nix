@@ -5,35 +5,31 @@
   stdenv,
   fetchFromGitHub,
   lib,
-}: let
-  owner = "Vexcenot";
-  repo = "-Middle-Mann";
-  rev = "v23";
-  hash = "sha256-KJTatYMc11HamdYitPDM5jlRW0qHBQkAGu6kqyQ1Skk=";
-
+}:
+stdenv.mkDerivation rec {
   pname = "middle-mann-fonts";
+  version = "23";
 
   src = fetchFromGitHub {
-    inherit owner repo rev hash;
+    owner = "Vexcenot";
+    repo = "-Middle-Mann";
+    rev = "v${version}";
+    hash = "sha256-KJTatYMc11HamdYitPDM5jlRW0qHBQkAGu6kqyQ1Skk=";
   };
-in
-  stdenv.mkDerivation {
-    inherit pname src;
-    version = rev;
 
-    dontBuild = true;
+  dontBuild = true;
 
-    installPhase = ''
-      runHook preInstall
+  installPhase = ''
+    runHook preInstall
 
-      install -Dm644 $src/resource/fonts/*.ttf -t $out/share/fonts/truetype
+    install -Dm644 $src/resource/fonts/*.ttf -t $out/share/fonts/truetype
 
-      runHook postInstall
-    '';
+    runHook postInstall
+  '';
 
-    meta = {
-      homepage = "https://github.com/Vexcenot/-Middle-Mann";
-      description = "fonts for the best hud in tf2 (probably)";
-      license = lib.licenses.unfree;
-    };
-  }
+  meta = {
+    homepage = "https://github.com/Vexcenot/-Middle-Mann";
+    description = "fonts for the best hud in tf2 (probably)";
+    license = lib.licenses.unfree;
+  };
+}
