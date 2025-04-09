@@ -2,39 +2,36 @@
   fetchFromGitHub,
   stdenv,
   lib,
-}: let
-  owner = "grassmunk";
-  repo = "Chicago95";
-  rev = "v3.0.1";
-  hash = "sha256-EHcDIct2VeTsjbQWnKB2kwSFNb97dxuydAu+i/VquBA=";
+}:
+stdenv.mkDerivation rec {
+  pname = "chicago95";
+  version = "3.0.1";
 
   src = fetchFromGitHub {
-    inherit owner repo rev hash;
+    owner = "grassmunk";
+    repo = "Chicago95";
+    rev = "v${version}";
+    hash = "sha256-EHcDIct2VeTsjbQWnKB2kwSFNb97dxuydAu+i/VquBA=";
   };
-in
-  stdenv.mkDerivation {
-    inherit src;
-    pname = repo;
-    version = rev;
 
-    installPhase = ''
-      runHook preInstall
+  installPhase = ''
+    runHook preInstall
 
-      ls --recursive
+    ls --recursive
 
-      mkdir -p $out/share/themes
-      cp -r ./Theme/Chicago95 $out/share/themes/
+    mkdir -p $out/share/themes
+    cp -r ./Theme/Chicago95 $out/share/themes/
 
-      mkdir -p $out/share/icons
-      cp -r ./Icons/* $out/share/icons/
-      cp -r ./Cursors/* $out/share/icons/
+    mkdir -p $out/share/icons
+    cp -r ./Icons/* $out/share/icons/
+    cp -r ./Cursors/* $out/share/icons/
 
-      runHook postInstall
-    '';
+    runHook postInstall
+  '';
 
-    meta = {
-      homepage = "https://github.com/grassmunk/Chicago95";
-      description = "A rendition of everyone's favorite 1995 Microsoft operating system for Linux.";
-      license = lib.licenses.unfree;
-    };
-  }
+  meta = {
+    homepage = "https://github.com/grassmunk/Chicago95";
+    description = "A rendition of everyone's favorite 1995 Microsoft operating system for Linux.";
+    license = lib.licenses.unfree;
+  };
+}
