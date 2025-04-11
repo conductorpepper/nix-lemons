@@ -37,11 +37,17 @@ stdenv.mkDerivation rec {
     runHook postPatch
   '';
 
-  installPhase = ''
-    runHook preInstall
+  buildPhase = ''
+    runHook preBuild
 
     qmake
     make -j 12
+
+    runHook postBuild
+  '';
+
+  installPhase = ''
+    runHook preInstall
 
     mkdir -p $out/bin
     cp laigter $out/bin
