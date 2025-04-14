@@ -36,8 +36,14 @@ afterward, you can add some packages to `environment.systemPackages` or `home.pa
 }
 ```
 
-you can try certain executable packages with the following command (given the nix cli):
+you can try the packages with the following command (given the nix cli):
 
 ```bash
 nix shell github:conductorpepper/nix-lemons#<name>
+```
+
+if it is executable (i.e., betacraft and laigter), you can use this to run it automatically (given the nix cli):
+
+```bash
+nix run github:conductorpepper/nix-lemons#<name>
 ```
