@@ -30,6 +30,8 @@ stdenv.mkDerivation rec {
     xorg.libXxf86vm
     xorg.libXxf86dga
     xorg.libXxf86misc
+
+    xorg.xrandr
   ];
 
   src = fetchurl {
