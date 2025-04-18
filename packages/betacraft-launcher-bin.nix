@@ -7,13 +7,14 @@
   lib,
   makeWrapper,
   bash,
-  jdk8, # kinda arbitrary
   xorg,
   libGL,
   openal,
+  jdk8,
   extraArguments ? [],
-}:
-stdenv.mkDerivation rec {
+}: let
+  jdk = jdk8;
+in stdenv.mkDerivation rec {
   pname = "betacraft-launcher-bin";
   version = "1.09_17";
 
@@ -30,9 +31,6 @@ stdenv.mkDerivation rec {
     xorg.libXxf86vm
     xorg.libXxf86dga
     xorg.libXxf86misc
-
-    xorg.xrandr
-    xorg.libXrandr
   ];
 
   src = fetchurl {
@@ -47,7 +45,7 @@ stdenv.mkDerivation rec {
 
     mkdir -p $out/bin
     echo "#!${bash}/bin/bash" > $out/bin/betacraft-launcher
-    echo "${jdk8}/bin/java ${builtins.concatStringsSep " " extraArguments} -jar $src" >> $out/bin/betacraft-launcher
+    echo "${jdk}/bin/java ${builtins.concatStringsSep " " extraArguments} -jar $src" >> $out/bin/betacraft-launcher
     chmod +x $out/bin/betacraft-launcher
 
     runHook postInstall
@@ -57,7 +55,7 @@ stdenv.mkDerivation rec {
     runHook preFixup
 
     wrapProgram $out/bin/betacraft-launcher \
-      --prefix PATH : ${lib.makeBinPath [jdk8]} \
+      --prefix PATH : ${lib.makeBinPath [jdk xorg.xrandr]} \
       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath buildInputs}
 
     runHook postFixup
