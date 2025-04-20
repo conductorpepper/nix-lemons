@@ -45,7 +45,7 @@ in stdenv.mkDerivation rec {
 
     mkdir -p $out/bin
     echo "#!${bash}/bin/bash" > $out/bin/betacraft-launcher
-    echo "${jdk}/bin/java ${builtins.concatStringsSep " " extraArguments} -jar $src" >> $out/bin/betacraft-launcher
+    echo "exec ${jdk}/bin/java ${builtins.concatStringsSep " " extraArguments} -jar $src" >> $out/bin/betacraft-launcher
     chmod +x $out/bin/betacraft-launcher
 
     runHook postInstall
