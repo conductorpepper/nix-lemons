@@ -2,19 +2,24 @@
   rustPlatform,
   fetchFromGitHub,
   lib,
+  perl,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "kaledis";
-  version = "1.3.4";
+  version = "v1.3.4";
 
   src = fetchFromGitHub {
     owner = "orpos";
     repo = "kaledis";
     tag = finalAttrs.version;
-    hash = lib.fakeHash;
+    hash = "sha256-QWB6D+33j7hY7i74HRC7zKPsysYsZhGJ1+oSiRKwlcQ=";
   };
 
-  cargoHash = lib.fakeHash;
+  cargoHash = "sha256-c/CE9XB+VUWx2CmH/0gqSucWHoCSlfcaqDHAD1Vr3co=";
+
+  nativeBuildInputs = [
+    perl
+  ];
 
   meta = {
     description = "A new way to LÖVE";
