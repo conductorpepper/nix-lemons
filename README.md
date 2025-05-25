@@ -9,10 +9,10 @@ nix packages of **dubious** quality meant for x86_64-linux
 |----------------------------|---------------------------------------------|
 | betacraft-launcher-bin     | https://betacraft.uk/                       |
 | chicago95                  | https://github.com/grassmunk/Chicago95      |
-| cursed_font                | https://tilde.team/~kiedtl/projects/cursed/ |
-| kaledis                    | https://github.com/nix-community/naersk     |
-| laigter                    | https://github.com/azagaya/laigter/         |
-| middle-mann-fonts          | https://github.com/Vexcenot/-middle-mann/   |
+| cursed_font                | https://tilde.team/~kiedtl/projects/cursed  |
+| kaledis                    | https://github.com/orpos/kaledis            |
+| laigter                    | https://github.com/azagaya/laigter          |
+| middle-mann-fonts          | https://github.com/Vexcenot/-middle-mann    |
 | uzura                      | https://azukifont.com/font/uzura.html       |
 
 ## installation
